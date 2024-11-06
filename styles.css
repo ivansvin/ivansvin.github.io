@@ -3,8 +3,8 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
-/* The main container */
 
+/* Styling the main container */
 .container {
     width: 80%;
     margin: auto;
@@ -12,6 +12,7 @@
     letter-spacing: 0.5px;
     height: 80%;
 }
+
 img {
     width: 50px;
     vertical-align: middle;
@@ -30,7 +31,7 @@ img {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
 }
-
+/* Styling the profile picture */
 .msgimg {
     margin-left: 2%;
     float: left;
@@ -53,7 +54,7 @@ img {
     height: 10%;
  
 }
-/* Styling the chat box container */
+/* Styling the inbox */
 .chat-page {
     padding: 0 0 50px 0;
 }
@@ -70,12 +71,11 @@ img {
     padding: 30px 15px 0 25px;
 }
 
-/* Styling the message page */
-
 .msg-page {
     max-height: 500px;
     overflow-y: auto;
 }
+
 /* Styling the msg-bottom container */
  .msg-bottom {
         border-top: 1px solid #ccc;
@@ -148,6 +148,7 @@ img {
     .send-icon {
         font-weight: bold !important;
     }
+
 /* Styling the avatar  */
 received-chats-img {
     display: inline-block;
