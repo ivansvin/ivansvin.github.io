@@ -2,11 +2,6 @@
 <html>
 <head>
 <title>Чат</title>
-<style>
-body { font-family: sans-serif; }
-#chatbox { width: 400px; height: 300px; border: 1px solid #ccc; overflow-y: scroll; padding: 10px; }
-#message { width: 300px; }
-</style>
 <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
       <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
       <py-env>
@@ -23,95 +18,6 @@ body { font-family: sans-serif; }
       name: pyodide-0.20
       lang: python
 </py-config>
-
-<h1>Чат</h1>
-
-<div id="chatbox">
-  <!-- Здесь будут отображаться сообщения -->
-</div>
-
-<input type="text" id="message" placeholder="Введите сообщение">
-<button onclick="sendMessage()">Отправить</button>
-
-<script>
-function sendMessage() {
-  // Здесь должна быть реализация отправки сообщения на сервер
-  // Предполагается, что у Вас есть HTML с элементами:
-// <input type="text" id="messageInput">
-// <button id="sendButton">Отправить</button>
-// <div id="chatbox"></div>
-
-const messageInput = document.getElementById('messageInput');
-const sendButton = document.getElementById('sendButton');
-const chatbox = document.getElementById('chatbox');
-
-// Замените 'YOUR_SERVER_ENDPOINT' на фактический URL Вашего сервера
-const serverEndpoint = 'YOUR_SERVER_ENDPOINT';
-
-sendButton.addEventListener('click', sendMessage);
-messageInput.addEventListener('keydown', (event) => {
-  if (event.key === 'Enter') {
-    sendMessage();
-  }
-});
-
-
-function sendMessage() {
-  const message = messageInput.value.trim();
-  if (message === '') return;
-
-  fetch(serverEndpoint, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ message: message })
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    return response.json();
-  })
-  .then(data => {
-    // Обработка успешной отправки, например, добавление сообщения в chatbox
-    appendMessage(data.sender, data.message);
-    messageInput.value = '';
-  })
-  .catch(error => {
-    console.error('Ошибка отправки сообщения:', error);
-    // Обработка ошибок, например, отображение сообщения об ошибке пользователю
-    alert('Ошибка отправки сообщения. Пожалуйста, попробуйте позже.');
-  });
-}
-
-
-function appendMessage(sender, message) {
-  const messageElement = document.createElement('div');
-  messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
-  chatbox.appendChild(messageElement);
-  chatbox.scrollTop = chatbox.scrollHeight; // Автоматическая прокрутка вниз
-}
-
-
-//  Пример получения сообщений (нужно реализовать на сервере и  интегрировать здесь)
-setInterval(() => {
-  fetch(`${serverEndpoint}/messages`) // Запрос на получение новых сообщений
-    .then(response => response.json())
-    .then(messages => {
-      messages.forEach(msg => {
-        appendMessage(msg.sender, msg.message);
-      });
-    })
-    .catch(error => console.error("Ошибка получения сообщений:", error));
-}, 2000); // Проверка новых сообщений каждые 2 секунды
-
-
-
-  let message = document.getElementById("message").value;
-  console.log("Отправлено сообщение:", message); // Замена на отправку на сервер
-  document.getElementById("message").value = ""; // Очистка поля ввода
-}
 </script>
 <py-script>import random
 import os
