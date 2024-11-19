@@ -7,8 +7,22 @@ body { font-family: sans-serif; }
 #chatbox { width: 400px; height: 300px; border: 1px solid #ccc; overflow-y: scroll; padding: 10px; }
 #message { width: 300px; }
 </style>
+<link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+      <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+      <py-env>
+            - numpy
+            - requests
+      </py-env>
 </head>
 <body>
+<py-config>
+  - autoclose_loader: false
+  - runtimes:
+    -
+      src: "https://cdn.jsdelivr.net/pyodide/v0.20.0/full/pyodide.js"
+      name: pyodide-0.20
+      lang: python
+</py-config>
 
 <h1>Чат</h1>
 
@@ -99,6 +113,33 @@ setInterval(() => {
   document.getElementById("message").value = ""; // Очистка поля ввода
 }
 </script>
-
+<py-script>import random
+import os
+import time
+x=random.randint(0,99)
+y=random.randint(0,99)
+print("реши пример:")
+print(x,"+",y)
+n = int(input())
+if n==x+y:
+    print("молодец!")
+else:
+    print("если ты ошибёшься ещё раз твоя OC слетит :)")
+    time.sleep(1)
+    print("шутка")
+    print(-x,'+',y*1.5,':',4)
+    n0 = int(input())
+    if n0==-x+((y*1.5)/4):
+        print('а ты неплох')
+    else:
+        print('у тебя последняя попытка')
+        time.sleep(1)
+        print('угадай число от 1 до 6')
+        p=random.randint(1,6)
+        n1 = int(input())
+        if n1==p:
+            print('просто повезло молодец')
+        else:
+            print('динаху')</py-script> </body>
 </body>
 </html>
