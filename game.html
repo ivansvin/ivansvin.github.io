@@ -12,15 +12,13 @@
 <body>
 <py-config>
   - autoclose_loader: false
-  - runtimes:
-    -
+  - runtimes: false
       src: "https://cdn.jsdelivr.net/pyodide/v0.20.0/full/pyodide.js"
       name: pyodide-0.20
       lang: python
 </py-config>
 </script>
 <py-script>import random
-import time
 x=random.randint(0,99)
 y=random.randint(0,99)
 print("реши пример:")
@@ -30,7 +28,6 @@ if n==x+y:
     print("молодец!")
 else:
     print("если ты ошибёшься ещё раз твоя OC слетит :)")
-    time.sleep(1)
     print("шутка")
     print(-x,'+',y*1.5,':',4)
     n0 = float(input())
@@ -38,13 +35,13 @@ else:
         print('а ты неплох')
     else:
         print('у тебя последняя попытка')
-        time.sleep(1)
         print('угадай число от 1 до 6')
         p=random.randint(1,6)
         n1 = int(input())
         if n1==p:
             print('просто повезло молодец')
         else:
-            print('динаху')</py-script> </body>
+            print('динаху')
+</py-script>
 </body>
 </html>
